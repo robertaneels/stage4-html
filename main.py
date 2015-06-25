@@ -57,13 +57,12 @@ class ModifyPage(ndb.Model):
 
 
 class MainPage(Handler):
+
   
     def get(self):
-        self.render("index-Stage4.html")
- 
-        
+            comments = self.request.get_all("comment", '')        
+            self.render("index-Stage4.html", comments = comments)
 
-    def get(self):
             #Creating a key 
             commentbook_key = ndb.Key('MainPage', 'modify_page')
 
@@ -98,13 +97,7 @@ class MainPage(Handler):
 
 		comment=self.request.get('comment')
 		
-
-		#Test to see comment
-		print '####'
-		print comment
-		print '####'
-
-		print page_comments
+		
                 
     
 		if comment:

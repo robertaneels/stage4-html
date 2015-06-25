@@ -30,6 +30,7 @@ body{
   background-color:#999999;
   color : #0066FF;
 }
+
 .Lesson{
   color : #0066FF;
   text-align:left;
@@ -41,6 +42,7 @@ body{
   margin-left:10px;
   margin-right:auto;
 }
+
 .Lessontext{
   color : #000000;
   text-align:left;
@@ -71,6 +73,7 @@ body{
   margin-left:10px;
   margin-right:auto;
 }
+
 .Importanttips{
   color : #0066FF;
   text-align:left;
@@ -86,3 +89,4 @@ body{
 
 .error{
   color : red;
+}
