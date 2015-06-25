@@ -1,24 +1,18 @@
-{% extends "base.html"%}
+{% extends "base.html" %}
 {% block content %}
-		<div class="header">
-
+		<div>
 		<form method="post" action ="/">
 			<label><h1>Add Comments or Favorite Topic</h1></label>
-		<input type="text" name="comment">
+			<input type="text" name="comment">
 		<br>
-		<button>Add</button>
-		<span>%s</span>
-		{%if comments%}
-			<br>
-			<br>
-			<h2>Comments</h2>
-				<ul>
-				{% for comment in comments%}
-					<li>{{comment}}</li>
-				{%endfor%}
-				</ul>
 
-		{%endif%}
+		{% if comments %}
+			{% for comment in comments %}
+			<input type= "hidden" name= "comment" value= "{{comment}}">
+			{% endfor %}
+		{% endif %}
+		<button>Add</button>
+		<span class="error" font color="red">{{error}}</span>
 		</form>
 		</div>
 
@@ -38,7 +32,8 @@
 		    It contains a <em>Title, Header and Body</em> structure.
 		    </p>
 		    <p>
-		    The body of an <a href="https://en.wikipedia.org/wiki/HTML">HTML document</a>
+		    The body of an <a href="https://en.wikipedia.org/wiki/HTML">
+		    HTML document</a>
 		    is made up of text that has markup language. This text
 		    can be
 		    <em> inline </em> or <em>block</em>. <b>Block</b> 
@@ -75,7 +70,7 @@
 		 </div>
 		           
 		 <div class = "Lessontext">           
-		     CSS is the styling-- 
+		     <p>CSS is the styling-- 
 		     Cascading Stying Sheets-- used to apply to HTML 
 		     documentation. It uses the concept of <em>inheritance
 		     </em> where descendant elements inherit text related
@@ -141,9 +136,11 @@
 			<a href="http://validator.w3.org/#validate_by_input">
 			
 			To verify HTML</a> and here:
-			<a href="http://jigsaw.w3.org/css-validator/#validate_by_input">To verify CSS</a>
+			<a href="http://jigsaw.w3.org/css-validator/#validate_by_input">
+			To verify CSS</a>
 			</p>
-			<div class=image> <div class ="app.png">                 <img src="/screenshots/app.png" alt="This is a screenshot">
+			<div class=image> <div class ="app.png"><img src="
+				/screenshots/app.png" alt="This is a screenshot">
 		</div> 	     
 		</div>                     
 		         		
@@ -480,69 +477,126 @@
  		 	destination in a network.
  		 <b>Bandwidth</b> is the amount of information that 
  		 	can be transmitted per unit of time (bps). 
- 		 	<a href "http://www.cnet.com/internet-speed-test/">cnet internet speed test </a> measures the bandwidth you're getting over 
+ 		 	<a href "http://www.cnet.com/internet-speed-test/">cnet 
+ 		 	internet speed test </a> measures the bandwidth you're getting
+ 		 	over 
  		 	your internet.</p>
- 			Adding more nodes and adding more bits are ways to reduce latency and increase number of things you can distinguish 
+ 			Adding more nodes and adding more bits are ways to reduce 
+ 			latency and increase number of things you can distinguish 
  			respectively.</p>
  		
  		<p><b>Protocol</b> is set of rules that tell you how 2 
  			entities can talk to each other, like a client 
- 			and server. Client uses a protocol -- HTTP -- to send a message. The server gets the message, runs code, finds file, runs code
+ 			and server. Client uses a protocol -- HTTP -- to send a message.
+ 			 The server gets the message, runs code, finds file, runs code
  			and sends back a response.</p>
- 		<p><b>HTML documents</b> - contain a DOM structure: doctype; opening and closing HTML tags; the head which contains title, meta-data, java 
- 		script, css cscript, etc.; and the body tag which contains the content of what appears on the webpage.
- 		<p><b>URL</b> or Uniform Resource Locator is made up of protocol (http://), host (www.udacity.com), and path.</p> 
- 		<p><b>Query Parameter</b> is in the URL such as the Get parameter. Example would be like "/foo?p=1&q=neat". "?" is used for the first 
- 			parameter, "&" is used to separate for every parameter after. Name = value.</p> 
+ 		<p><b>HTML documents</b> - contain a DOM structure: doctype; 
+ 		opening and closing HTML tags; the head which contains title, meta-
+ 		data, java 
+ 		script, css cscript, etc.; and the body tag which contains the 
+ 		content of what appears on the webpage.
+ 		<p><b>URL</b> or Uniform Resource Locator is made up of protocol 
+ 			(http://), host (www.udacity.com), and path.</p> 
+ 		<p><b>Query Parameter</b> is in the URL such as the Get parameter.
+ 		Example would be like "/foo?p=1&q=neat". "?" is used for the first 
+ 			parameter, "&" is used to separate for every parameter after. 
+ 			Name = value.</p> 
  		
- 		<p><b>"#fragment"</b> is next in the URL path. It exists in the browser only and not sent to server. when there are query parameters, 
+ 		<p><b>"#fragment"</b> is next in the URL path. It exists in the 
+ 			browser only and not sent to server. when there are query 
+ 			parameters, 
  		fragment follows.</p>
- 		<p><b>Port</b> - to make an internet connection in a URL you need the address of a machine and a port. Between "localhost" and "path" is 
+ 		<p><b>Port</b> - to make an internet connection in a URL you need 
+ 			the address of a machine and a port. Between "localhost" and 
+ 			"path" is 
  		the port. Port default =80. "http://localhost:8000/" is typical.</p>
- 		<p><b>HTTP</b> which is the main protocol of the web. Request from your browser begins with a request line. <b>Request line</b> is made up 
- 		of Method - Path - Version such as "GET" (used to get a document) and "POST", the path which includes up through parameters but
- 		does not include the fragment, and version which is usually HTTP/1.1 or 1.0. Note that the path is a relative path. You could 
- 		also specify the full path which would start with the http link through to the path and parameters.So the host is used for 
- 		making the connection and the path is used for making the request.</p>
+ 		<p><b>HTTP</b> which is the main protocol of the web. Request from 
+ 			your browser begins with a request line. <b>Request line</b> is 
+ 			made up 
+ 		of Method - Path - Version such as "GET" (used to get a document) 
+ 		and "POST", the path which includes up through parameters but
+ 		does not include the fragment, and version which is usually HTTP/1.
+ 		1 or 1.0. Note that the path is a relative path. You could 
+ 		also specify the full path which would start with the http link 
+ 		through to the path and parameters.So the host is used for 
+ 		making the connection and the path is used for making the request.
+ 		</p>
 
- 		<p><b>Request link</b> also includes headers (name: value). "Host" as in "Host: www.example.com" which is required in 1.1. Webservers may
- 		 have multiple names so this is necessary. Next header is "User-Agent:" as in "User-Agent= chrome" which is who is making the 
- 		 request (i.e., what type of machine). User agent important because it helps you control who has access and how they can use your 
- 		 site. Always use User-Agents appropriately when using your web software.</p>
- 		<p><b>HTTP Responses</b> look similar to request line. Status line (HTTP/1.1) - status code (200 which is ok, or 302 found or 404 not 
- 			found or 500 server error) - Reason phrase is the Status code verbiage such as ok, found, not found, server error. Status line 
- 			is followed by a number of headers. Some are required, or assumed. "Date:", "Server:" which should be hidden, "Content-Type:" 
+ 		<p><b>Request link</b> also includes headers (name: value). "Host" 
+ 			as in "Host: www.example.com" which is required in 1.1. 
+ 			Webservers may
+ 		 have multiple names so this is necessary. Next header is "User-
+ 		 Agent:" as in "User-Agent= chrome" which is who is making the 
+ 		 request (i.e., what type of machine). User agent important because 
+ 		 it helps you control who has access and how they can use your 
+ 		 site. Always use User-Agents appropriately when using your web 
+ 		 software.</p>
+ 		<p><b>HTTP Responses</b> look similar to request line. Status line 
+ 			(HTTP/1.1) - status code (200 which is ok, or 302 found or 404 
+ 			not 
+ 			found or 500 server error) - Reason phrase is the Status code 
+ 			verbiage such as ok, found, not found, server error. Status 
+ 			line 
+ 			is followed by a number of headers. Some are required, or 
+ 			assumed. "Date:", "Server:" which should be hidden, "Content-
+ 			Type:" 
  			like text/html, "Content-Length".</p>
- 		<p><b>Servers</b> - purpose is to respond to Client request. 2 types which are Static or pre-written file like an image; and Dynamic 
- 			where response built on the fly by program that is running. Most content today is dynamic and built by programs called web 
+ 		<p><b>Servers</b> - purpose is to respond to Client request. 2 
+ 			types which are Static or pre-written file like an image; and 
+ 			Dynamic 
+ 			where response built on the fly by program that is running. 
+ 			Most content today is dynamic and built by programs called web 
  			applications which is what we'll be building. </p>
  		<p>
- 		<b>HTML Forms</b> - allow you to create an entry space using the tag form. Input is the tag that can take a couple of attributes. Like 
- 		input name. When press enter or click submit, you are submitting a form. URLs can't have spaces in theme so your browser will enter 
- 		spacers such as better+flight+search. User "password" input type to collect passwords but will not be secure. Use "checkbox" with 
- 		name to display checkbox. Use "radio" and give same name so can only select one option. "label" attribute lets you label each box.
+ 		<b>HTML Forms</b> - allow you to create an entry space using the
+ 		 tag form. Input is the tag that can take a couple of attributes. 
+ 		 Like 
+ 		input name. When press enter or click submit, you are submitting a 
+ 		form. URLs can't have spaces in theme so your browser will enter 
+ 		spacers such as better+flight+search. User "password" input type to 
+ 		collect passwords but will not be secure. Use "checkbox" with 
+ 		name to display checkbox. Use "radio" and give same name so can 
+ 		only select one option. "label" attribute lets you label each box.
  		</p>
  		
- 		<p> <b>Validation</b> allows you to make your website safe from hackers using input validation. Validation means verifying on the server 
- 		side so it knows when it receives junk or bad data.  
+ 		<p> <b>Validation</b> allows you to make your website safe from 
+ 		hackers using input validation. Validation means verifying on the 
+ 		server side so it knows when it receives junk or bad data. It also 
+ 		ensures it is clear to the user when incorrect info is entered.  
  		</p>	
- 		<p> Limiting values that the user can select doesn't protect against someone using a form with bad data to post that bad data to 
- 		your server. You have to have a way to verify the validity of the input and send error with error message if invalid.</p>  
- 		<p><b>String substitution</b> - Use to avoid repetition such as if we want to return a lot of bold content without continually using bold 
+ 		<p> Limiting values that the user can select doesn't protect 
+ 		against someone using a form with bad data to post that bad data to 
+ 		your server. You have to have a way to verify the validity of the 
+ 		input and send error with error message if invalid.</p>  
+ 		<p><b>String substitution</b> - Use to avoid repetition such as if 
+ 			we want to return a lot of bold content without continually 
+ 			using bold 
  		tags. So instead use "<b>%s</b>" % .
- 			
 
- 		 Escaping will prevent data entered from messing up our html . Such as &lt;<b>&gt;</b>.	You can also import cgi in python which will 
+ 		 Escaping will prevent data entered from messing up our html . Such 
+ 		as &lt;<b>&gt;</b>.	You can also import cgi in python which will 
  		 apply the escape command where needed. 
 
- 		 Redirection: Used to allow you to share success link and reload page. Directs user to a success page. Also reloading the success 
- 		 page doesnt resubmit the form. and to have distinct pages for forms and successes </p>
+ 		 Redirection: Used to allow you to share success link and reload 
+ 		 page. Directs user to a success page. Also reloading the success 
+ 		 page doesnt resubmit the form. and to have distinct pages for 
+ 		 forms and successes </p>
 
- 		 <p><b> HTML Templates</b> - Separate different type of code, make more readable code, make a more secure website, and make html easier to 
- 		 	modify. Use Template libraries like jinja2 to build complicated strings. </p>
- 		 <p><b>Variable Substitution</b> - in templates allows you to use variables to populate values in an HTML document using tags. Statement Syntax and Loop Syntax are methods for achieving this kind of substitution. </p>
+ 		 <p><b> HTML Templates</b> - Separate different type of code, make 
+ 		 	more readable code, make a more secure website, and make html 
+ 		 	easier to 
+ 		 	modify. Use Template libraries like jinja2 to build complicated
+ 		 	strings. </p>
+ 		 <p><b>Variable Substitution</b> - in templates allows you to use 
+ 		 	variables to populate values in an HTML document using tags. 
+ 		 	Statement Syntax and Loop Syntax are methods for achieving this 
+ 		 	kind of substitution. </p>
  		
- 		 <p><b> Template Inheritance</b> - use one template for setting up the page, and subtemplates that redefine the content. Again demonstrates the concept of abstraction in that it minimizes code to avoid repetition by projecting a template format for the subtemplates containing content.</p>
+ 		 <p><b> Template Inheritance</b> - use one template for setting up 
+ 		 	the page, and subtemplates that redefine the content. Again 
+ 		 	demonstrates the concept of abstraction in that it minimizes 
+ 		 	code to avoid repetition by projecting a template format for 
+ 		 	the subtemplates containing content.</p>
 
  		 <div class="Importanttips">  
  		 	<li>Always automatically escape variables</li>
@@ -550,15 +604,23 @@
  		 	<li>Minimize html in code</li>
  		 </div>
 
- 		 <p><b>Database</b> - Program that stores and returns large amounts of structured data. Types of databases include Relational (like SQL), Google App Engine Data Store which uses objects instead of tables. Indexing help increase the speed of queries and allow data to be sorted. 
+ 		 <p><b>Database</b> - Program that stores and returns large amounts
+ 		  of structured data. Types of databases include Relational (like 
+ 		  SQL), Google App Engine Data Store which uses objects instead of
+ 		   tables. Indexing help increase the speed of queries and allow 
+ 		   data to be sorted. 
  		
  		 <div class = "Importanttips">
       		<p><b>ACID</b></p>
     		<ul>
-    			<li>Atomicity - all parts of a transaction succeed or fail together</li>
-    			<li>Consistency - the database will always be consistent and is achieved through replication</li>
-    			<li>Isolation - No transactions can interfere with another's</li>
-    			<li>Durability - Once a transaction is committed it won't be lost</li>
+    			<li>Atomicity - all parts of a transaction succeed or fail 
+    				together</li>
+    			<li>Consistency - the database will always be consistent 
+    				and is achieved through replication</li>
+    			<li>Isolation - No transactions can interfere with another's
+    			</li>
+    			<li>Durability - Once a transaction is committed it won't 
+    				be lost</li>
     		</ul>
     	</div>	
 

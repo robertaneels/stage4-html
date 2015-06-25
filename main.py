@@ -64,10 +64,10 @@ class MainPage(Handler):
         
 
     def get(self):
-            #Creating a key for CommentsBook but I don't know what goes in here
-            commentbook_key = ndb.Key('CommentBook', 'modify_page')
+            #Creating a key 
+            commentbook_key = ndb.Key('MainPage', 'modify_page')
 
-            #6-22 added this for triggering error
+            #added this for triggering error
             error=self.request.get('error','')
 
             #instantiates modify page object
@@ -75,33 +75,36 @@ class MainPage(Handler):
 		
 
 	    modify_page_query = ModifyPage.query(ancestor=commentbook_key).order(ModifyPage.date)
-            #modify_page_query = ModifyPage.query().order(ModifyPage.date)
+            modify_page_query = ModifyPage.query().order(ModifyPage.date)
 	    modify_page = modify_page_query.fetch()
 
 	
             
-	    self.render("index-Stage4.html", modify_page=modify_page)
+	    self.render("index-Stage4.html", modify_page=modify_page, error=error)
 
 
    
 
-        #class CommentBook(webapp2.RequestHandler):
+        
     def post(self):
 
                 #writes object to Google Datastore server
 
                 #pull a reference object to ModifyPage object to pull the objects from Google Datastore. Queries all objects in database.Use fetch
                 #to limit query to specified number.
+                pull_posts=5
 		query=ModifyPage.query()
-                #page_comments = query.fetch(5)
+                page_comments = query.fetch(pull_posts)
 
 		comment=self.request.get('comment')
-		#nickname=self.request.get('nickname')
+		
 
-		#Test to see nickname and comment
-		#print '####'
-		#print nickname, comment
-		#print '####'
+		#Test to see comment
+		print '####'
+		print comment
+		print '####'
+
+		print page_comments
                 
     
 		if comment:
