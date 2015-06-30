@@ -54,34 +54,28 @@ class ModifyPage(ndb.Model):
 class MainPage(Handler):
   
     def get(self):
-            #comments=self.request.get_all("comment")
+            
            
-
-            #comments_query=comments.query()
-            #comments_page=comments_query.fetch()
-            #self.response.out.write(comments_page)
+            comment=self.request.get_all("comment")
+      
 
             #added this for triggering error
-            error=self.request.get('error','')
+            error=self.request.get('error'," ")
 
 
             #Creating a key 
-            #commentbook_key = ndb.Key('MainPage', 'modify_page')
+            commentbook_key = ndb.Key('MainPage', 'modify_page')
 
             #instantiates modify page object
-            modify_page = ModifyPage(comment='') 
-        
-
-            #modify_query = ModifyPage.query(ancestor=commentbook_key).order(-ModifyPage.date)
-            #modify_page_query = ModifyPage.query().order(-ModifyPage.date)
-            #modify_page_list = modify_page_query.fetch()
+            modify_page = ModifyPage(comment='')
+            modify_query = ModifyPage.query(ancestor=commentbook_key).order(-ModifyPage.date)
+           
 
             query=ModifyPage.query().order(ModifyPage.date)
             info_list = query.fetch()
-
             
             
-        
+            
             self.render("index-Stage4.html", comment=info_list, error=error)
 
         
@@ -89,13 +83,13 @@ class MainPage(Handler):
         
     def post(self):
 
-                #writes object to Google Datastore server
+        #writes object to Google Datastore server
 
-                #pull a reference object to ModifyPage object to pull the objects from Google Datastore. Queries all objects in database.Use fetch
-                #to limit query to specified number.
-                #pull_posts=5
-                #query=ModifyPage.query()
-                #page_comments = query.fetch(pull_posts)
+        #pull a reference object to ModifyPage object to pull the objects from Google Datastore. Queries all objects in database.Use fetch
+        #to limit query to specified number.
+        pull_posts=5
+        query=ModifyPage.query()
+        page_comments = query.fetch(pull_posts)
 
     
 
