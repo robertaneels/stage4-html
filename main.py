@@ -56,7 +56,7 @@ class MainPage(Handler):
     def get(self):
             
            
-            comment=self.request.get_all("comment")
+            #comment=self.request.get_all("comment")
       
 
             #added this for triggering error
@@ -70,7 +70,7 @@ class MainPage(Handler):
             modify_page = ModifyPage(comment='')
             modify_query = ModifyPage.query(ancestor=commentbook_key).order(-ModifyPage.date)
            
-
+            #instantiates another object used for pulling and displaying comments.
             query=ModifyPage.query().order(ModifyPage.date)
             info_list = query.fetch()
             
@@ -83,20 +83,24 @@ class MainPage(Handler):
         
     def post(self):
 
-        #writes object to Google Datastore server
-
+        
         #pull a reference object to ModifyPage object to pull the objects from Google Datastore. Queries all objects in database.Use fetch
         #to limit query to specified number.
         pull_posts=5
         query=ModifyPage.query()
         page_comments = query.fetch(pull_posts)
+        print page_comments
+
+        #added per nitpick from 1st review to test code
+        #logging.debug("your message")
 
     
 
-        comment=self.request.get('comment')     
-                
-            
-        if comment:
+        comment=self.request.get('comment')
+        
+        #writes object to Google Datastore server               
+        #using comment.strip() to trigger error when only spaces entered.            
+        if comment.strip():
                     modify_page = ModifyPage(comment=comment)
                     modify_page.content=self.request.get('comment')
                     modify_page.put()
